@@ -1,0 +1,16 @@
+{
+  "name": "tasks-fixture",
+  "version": "0.1.0",
+  "description": "A small CLI utility for testing the Tasks platform",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test": "node --test src/*.test.ts",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}
