@@ -15,17 +15,19 @@ export function formatDuration(seconds: number): string {
 
 /**
  * Parse CLI arguments into key-value pairs.
- * Supports --key value format.
+ * Supports --key value format and boolean flags (--flag).
  */
-export function parseArgs(args: string[]): Record<string, string> {
-  const result: Record<string, string> = {};
+export function parseArgs(args: string[]): Record<string, string | boolean> {
+  const result: Record<string, string | boolean> = {};
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]!;
-    if (arg.startsWith("--") && i + 1 < args.length) {
+    if (arg.startsWith("--")) {
       const key = arg.slice(2);
-      const value = args[i + 1]!;
-      if (!value.startsWith("--")) {
-        result[key] = value;
+      const nextArg = args[i + 1];
+      if (nextArg === undefined || nextArg.startsWith("--")) {
+        result[key] = true;
+      } else {
+        result[key] = nextArg;
         i++;
       }
     }

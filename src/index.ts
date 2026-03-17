@@ -25,12 +25,18 @@ const parsed = parseArgs(args);
 if (parsed.greet) {
   console.log(`Hello, ${parsed.greet}!`);
 } else if (parsed.timer) {
-  const seconds = parseInt(parsed.timer, 10);
-  if (isNaN(seconds) || seconds <= 0) {
-    console.error("Error: --timer requires a positive integer");
+  const timerValue = parsed.timer;
+  if (typeof timerValue !== "string") {
+    console.error("Error: --timer requires a value");
     process.exit(1);
+  } else {
+    const seconds = parseInt(timerValue, 10);
+    if (isNaN(seconds) || seconds <= 0) {
+      console.error("Error: --timer requires a positive integer");
+      process.exit(1);
+    }
+    console.log(`Timer: ${formatDuration(seconds)}`);
   }
-  console.log(`Timer: ${formatDuration(seconds)}`);
 } else {
   console.log("tasks-fixture: no command specified. Try --help");
 }
