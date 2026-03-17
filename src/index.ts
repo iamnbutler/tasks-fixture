@@ -11,6 +11,7 @@ Options:
   --help, -h     Show this help message
   --version, -v  Show version
   --greet NAME   Greet someone
+  --uppercase    Print greeting in uppercase (use with --greet)
   --timer SEC    Start a countdown timer`);
   process.exit(0);
 }
@@ -23,7 +24,11 @@ if (args.includes("--version") || args.includes("-v")) {
 const parsed = parseArgs(args);
 
 if (parsed.greet) {
-  console.log(`Hello, ${parsed.greet}!`);
+  let greeting = `Hello, ${parsed.greet}!`;
+  if (args.includes("--uppercase")) {
+    greeting = greeting.toUpperCase();
+  }
+  console.log(greeting);
 } else if (parsed.timer) {
   const seconds = parseInt(parsed.timer, 10);
   if (isNaN(seconds) || seconds <= 0) {
