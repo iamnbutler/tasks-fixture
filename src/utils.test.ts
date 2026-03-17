@@ -1,6 +1,24 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { formatDuration, parseArgs } from "./utils.js";
+import { formatDuration, parseArgs, reverseString } from "./utils.js";
+
+describe("reverseString", () => {
+  it("reverses a simple string", () => {
+    assert.equal(reverseString("hello"), "olleh");
+  });
+
+  it("reverses an empty string", () => {
+    assert.equal(reverseString(""), "");
+  });
+
+  it("reverses a single character", () => {
+    assert.equal(reverseString("a"), "a");
+  });
+
+  it("reverses a string with spaces", () => {
+    assert.equal(reverseString("hello world"), "dlrow olleh");
+  });
+});
 
 describe("formatDuration", () => {
   it("formats seconds only", () => {

@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 
-import { formatDuration, parseArgs } from "./utils.js";
+import { formatDuration, parseArgs, reverseString } from "./utils.js";
 
 const args = process.argv.slice(2);
 
@@ -8,10 +8,11 @@ if (args.includes("--help") || args.includes("-h")) {
   console.log(`Usage: tasks-fixture [options]
 
 Options:
-  --help, -h     Show this help message
-  --version, -v  Show version
-  --greet NAME   Greet someone
-  --timer SEC    Start a countdown timer`);
+  --help, -h      Show this help message
+  --version, -v   Show version
+  --greet NAME    Greet someone
+  --timer SEC     Start a countdown timer
+  --reverse TEXT  Reverse a string`);
   process.exit(0);
 }
 
@@ -31,6 +32,8 @@ if (parsed.greet) {
     process.exit(1);
   }
   console.log(`Timer: ${formatDuration(seconds)}`);
+} else if (parsed.reverse) {
+  console.log(reverseString(parsed.reverse));
 } else {
   console.log("tasks-fixture: no command specified. Try --help");
 }

@@ -1,4 +1,11 @@
 /**
+ * Reverse a string.
+ */
+export function reverseString(text: string): string {
+  return text.split("").reverse().join("");
+}
+
+/**
  * Format a duration in seconds to a human-readable string.
  */
 export function formatDuration(seconds: number): string {
