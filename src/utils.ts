@@ -5,8 +5,18 @@ export function formatDuration(seconds: number): string {
   if (seconds < 60) {
     return `${seconds}s`;
   }
-  const mins = Math.floor(seconds / 60);
+
+  const hours = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
+
+  if (hours > 0) {
+    const parts = [`${hours}h`];
+    if (mins > 0) parts.push(`${mins}m`);
+    if (secs > 0) parts.push(`${secs}s`);
+    return parts.join(" ");
+  }
+
   if (secs === 0) {
     return `${mins}m`;
   }

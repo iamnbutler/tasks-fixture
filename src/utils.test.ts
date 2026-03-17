@@ -14,6 +14,26 @@ describe("formatDuration", () => {
   it("formats minutes and seconds", () => {
     assert.equal(formatDuration(90), "1m 30s");
   });
+
+  it("formats exact hours", () => {
+    assert.equal(formatDuration(3600), "1h");
+  });
+
+  it("formats hours and minutes", () => {
+    assert.equal(formatDuration(3660), "1h 1m");
+  });
+
+  it("formats hours and seconds", () => {
+    assert.equal(formatDuration(3601), "1h 1s");
+  });
+
+  it("formats hours, minutes, and seconds", () => {
+    assert.equal(formatDuration(3661), "1h 1m 1s");
+  });
+
+  it("formats multiple hours", () => {
+    assert.equal(formatDuration(7322), "2h 2m 2s");
+  });
 });
 
 describe("parseArgs", () => {
