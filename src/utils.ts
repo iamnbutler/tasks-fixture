@@ -1,5 +1,7 @@
 /**
  * Format a duration in seconds to a human-readable string.
+ * @param seconds - The duration in seconds to format
+ * @returns A human-readable string like "30s", "5m", or "2m 15s"
  */
 export function formatDuration(seconds: number): string {
   if (seconds < 60) {
@@ -16,6 +18,8 @@ export function formatDuration(seconds: number): string {
 /**
  * Parse CLI arguments into key-value pairs.
  * Supports --key value format.
+ * @param args - Array of command-line arguments to parse
+ * @returns An object mapping argument keys to their values
  */
 export function parseArgs(args: string[]): Record<string, string> {
   const result: Record<string, string> = {};
