@@ -1,8 +1,10 @@
 #!/usr/bin/env tsx
 
 import { formatDuration, parseArgs } from "./utils.js";
+import { loadConfig } from "./config.js";
 
 const args = process.argv.slice(2);
+const config = loadConfig();
 
 if (args.includes("--help") || args.includes("-h")) {
   console.log(`Usage: tasks-fixture [options]
@@ -22,15 +24,17 @@ if (args.includes("--version") || args.includes("-v")) {
 
 const parsed = parseArgs(args);
 
-if (parsed.greet) {
-  console.log(`Hello, ${parsed.greet}!`);
+if ("greet" in parsed) {
+  const name = parsed.greet || config.defaultGreeting;
+  console.log(`Hello, ${name}!`);
 } else if (parsed.timer) {
   const seconds = parseInt(parsed.timer, 10);
   if (isNaN(seconds) || seconds <= 0) {
     console.error("Error: --timer requires a positive integer");
     process.exit(1);
   }
-  console.log(`Timer: ${formatDuration(seconds)}`);
+  const bell = config.timerSound ? "\u0007" : "";
+  console.log(`Timer: ${formatDuration(seconds)}${bell}`);
 } else {
   console.log("tasks-fixture: no command specified. Try --help");
 }

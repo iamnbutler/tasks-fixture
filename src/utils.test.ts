@@ -26,8 +26,8 @@ describe("parseArgs", () => {
     assert.deepEqual(parseArgs([]), {});
   });
 
-  it("ignores flags without values", () => {
+  it("handles flags without values", () => {
     const result = parseArgs(["--verbose", "--name", "Bob"]);
-    assert.deepEqual(result, { verbose: "--name" });
+    assert.deepEqual(result, { verbose: "", name: "Bob" });
   });
 });

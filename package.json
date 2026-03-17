@@ -6,10 +6,11 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "tsx src/index.ts",
-    "test": "node --test src/*.test.ts",
+    "test": "node --import tsx --test src/*.test.ts",
     "lint": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "tsx": "^4.0.0",
     "typescript": "^5.7.0"
   }
